@@ -25,4 +25,11 @@ public class ProductsController : ControllerBase
         logger.LogDebug("GetProduct Action Invoked");
         return context.Products.Find(id);
     }
+
+    [HttpPost]
+    public void SaveProduct([FromBody] Product product)
+    {
+        context.Products.Add(product);
+        context.SaveChanges();
+    }
 }
