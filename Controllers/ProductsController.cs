@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers;
 
@@ -21,6 +22,9 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
     public async Task<IActionResult> GetProduct(long id)
     {
         Product? p = await context.Products.FindAsync(id);
