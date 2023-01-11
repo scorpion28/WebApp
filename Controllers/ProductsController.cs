@@ -32,10 +32,15 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> SaveProduct([FromBody] ProductBindingTarget target)
     {
-        Product p = target.ToProduct();
-        await context.Products.AddAsync(p);
-        await context.SaveChangesAsync();
-        return Ok(p);
+        if (ModelState.IsValid)
+        {
+            Product p = target.ToProduct();
+            await context.Products.AddAsync(p);
+            await context.SaveChangesAsync();
+            return Ok(p);
+        }
+
+        return BadRequest(ModelState);
     }
 
     [HttpPut]
@@ -50,5 +55,14 @@ public class ProductsController : ControllerBase
     {
         context.Products.Remove(new Product() { ProductId = id });
         await context.SaveChangesAsync();
+    }
+
+    [HttpGet("redirect")]
+    public IActionResult Redirect()
+    {
+        return RedirectToRoute(new
+        {
+            controller = "Products", action = "GetProducts"
+        });
     }
 }
