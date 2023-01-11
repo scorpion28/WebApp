@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace WebApp.Models;
 
@@ -14,5 +15,6 @@ public class Product
     public Category? Category { get; set; }
     
     public long SupplierId { get; set; }
+    
     public Supplier? Supplier { get; set; }
 }
