@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Pages;
 
@@ -13,8 +14,11 @@ public class IndexModel : PageModel
         context = ctx;
     }
 
-    public async Task OnGetAsync(long id = 1)
-    {
+    public async Task<IActionResult> OnGetAsync(long id = 1) {
         Product = await context.Products.FindAsync(id);
+        if (Product == null) {
+            return RedirectToPage("NotFound");
+        }
+        return Page();
     }
 }
