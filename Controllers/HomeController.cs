@@ -25,4 +25,8 @@ public class HomeController : Controller
     public IActionResult Common() {
         return View();
     }
+    
+    public IActionResult List() {
+        return View(context.Products);
+    }
 }
