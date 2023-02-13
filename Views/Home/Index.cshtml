@@ -1,10 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
-<h6 class="bg-primary text-white text-center m-2 p-2">Product Table</h6>
+﻿@model Product
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Product Table";
+}
 <div class="m-2">
     <table class="table table-sm table-striped table-bordered">
         <tbody>
@@ -25,5 +23,3 @@
         </tbody>
     </table>
 </div>
-</body>
-</html>
